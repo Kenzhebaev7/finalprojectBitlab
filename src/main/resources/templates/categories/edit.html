@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th = "http://www.thymeleaf.org"
+      xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/base.html">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<div layout:fragment="content">
+    <div th:each="category:${cours}">
+        <img th:src="${category.getImage()}" alt="">
+        <h1 th:text="${category.getName()}"></h1>
+        <p th:text="${category.getDescription()}"></p>
+        <h3 th:text="${category.getIsPremium()}"></h3>
+    </div>
+</div>
+</html>

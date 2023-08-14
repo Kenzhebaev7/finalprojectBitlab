@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th = "http://www.thymeleaf.org"
+      xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/base}">
+xmlns:sec = "http://www.thymeleaf.org/extras/spring-security">
+
+
+<div layout:fragment="content">
+    <section>
+        <div id="contactpost">
+            <h1>Связаться с нами</h1>
+            <p>Ниже приведен пример того, как контактная форма должна выглядеть:</p>
+            <form method="post" action="#">
+                <div id="contactform">
+                    <p><label for="name">Имя</label><input type="user" name="name" id="name" placeholder="your name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'your name'" /></p>
+                    <p><label for="email">Email</label><input type="email" name="email" id="email" placeholder="your@email.com" onfocus="this.placeholder = ''" onblur="this.placeholder = 'your@email.com'" /></p>
+                    <p><label for="message">Сообщение</label><textarea name="message" id="message"></textarea></p>
+                    <p style="padding-top: 105px"><span>&nbsp;</span><input class="submit" type="submit" name="contact_submitted" value="submit" /></p>
+                </div>
+            </form>
+            &nbsp;
+            <p>ПРИМЕЧАНИЕ. Контактная форма, подобная этой, потребует отправки данных<br />
+                по электронной почте.</p>
+        </div>
+
+    </section>
+
+</div>
+
+</html>

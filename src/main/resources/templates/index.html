@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th = "http://www.thymeleaf.org"
+      xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/base.html">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <div layout:fragment="content">
+        <section>
+            <div id="sline">
+                <h1>Последние новости</h1>
+            </div>
+            <div id="latestp">
+                <article th:each="post : ${posts}">
+                    <h1 th:text="${post.getName()}"></h1>
+                    <span style="margin: 10px 0; font-style: italic; float: left" th:text="'Пост был создан: ' + ' ' + ${post.getCreatedAt().getDayOfMonth()} + '.' + ${post.getCreatedAt().getMonthValue()} + '.' + ${post.getCreatedAt().getYear()}"></span>
+                    <h3 style="margin: 5px 0" th:text=" 'Категория:' + ' ' + ${post.getCategory().getName()}"></h3>
+                    <div class="article-image">
+                        <img th:src="${post.loadImage()}" alt="" />
+                    </div>
+                    <p th:text="${post.getDescription()}"></p>
+                    <a th:href="@{'/posts/' +${post.id}}" class="rm">Read More</a>
+                </article>
+            </div>
+        </section>
+    </div>
+</html>

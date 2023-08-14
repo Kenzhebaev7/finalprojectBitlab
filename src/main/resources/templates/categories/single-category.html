@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/base.html"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<div layout:fragment="content">
+    <div class="show-category">
+        <a id="back-to-cours" th:href="@{'/cours'}"><i class='bx bx-left-arrow-alt' ></i> Курсы</a>
+
+        <div style="display: flex; justify-content: center;">
+            <div class="category-info">
+                <h1 th:text="${category.getName()}"></h1>
+
+                <div class="category-details">
+                    <div class="category-details_">
+                        <i class='bx bxs-videos' ></i><span style="color: #fff" th:text="${category.getPosts().size() + ' Уроки'}"></span>
+                    </div>
+                    <div class="category-details_">
+                        <i class='bx bx-calendar' ></i><span style="color: #fff" th:text="${category.getCreatedAt().getMonth() + ' ' + category.getCreatedAt().getYear()}"></span>
+                    </div>
+                </div>
+
+                <div class="about-category">
+                    <h2>О курсе </h2>
+
+                    <p style="color: #fff" th:utext="${category.getDescription()}"></p>
+                </div>
+            </div>
+
+            <div class="posts-list">
+                <a sec:authorize="hasAnyRole('ROLE_ADMIN')" style="color: #fff; background: #1a73e8; border: none; outline: none; cursor:pointer; padding: 10px 20px; border-radius: 5px" th:href="@{'/posts/create/' + ${category.id} }">Добавить урок</a>
+                <h2>Все уроки</h2>
+                <div th:if="${posts == null or #lists.isEmpty(posts)}" style="margin-top: 10px;">
+                    <h3>Уроков пока нет</h3>
+                </div>
+
+                <div class="post" th:each="post, index : ${posts}" th:if="${posts != null}">
+                    <div class="isDone">
+                        <i class='bx bx-minus' ></i>
+                    </div>
+                    <span th:text="${index.count}"></span>
+                    <a style="color: #fff" th:href="@{'/posts/' + ${post.id}}"><h3 style="margin: 0; padding: 0;" th:text="${post.getName()}"></h3></a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+</html>

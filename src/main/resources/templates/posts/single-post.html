@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/base.html"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<div layout:fragment="content">
+    <section class="single">
+        <article id="singlepost">
+            <h1><a th:text="${post.getName()}"></a></h1>
+            <h2 th:text="'Пост был создан: ' + ' ' + ${post.getCreatedAt().getDayOfMonth()} + '.' + ${post.getCreatedAt().getMonthValue()} + '.' + ${post.getCreatedAt().getYear()}"></h2>
+            <img th:src="${post.loadImage()}" alt="" />
+            <p th:text="${post.getDescription()}"></p>
+        </article>
+
+        <!--__--__--__--  S I D E B A R --__--__--__--__-->
+        <div id="sidebar">
+            <aside>
+                <h2>Все посты этой категории</h2>
+                <ul>
+                    <li style="list-style: circle" th:each="cpost : ${posts}"><a th:href="@{'/posts/'+${cpost.id}}" th:text="${cpost.getName()}"></a></li>
+                </ul>
+            </aside>
+            <aside>
+                <div id="cat">
+                    <h1>Все Категории</h1>
+                    <ul>
+                        <li style="list-style: circle" th:each="category : ${categories}"><a href="#" th:text="${category.getName()}"></a>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </section>
+</div>
+</html>

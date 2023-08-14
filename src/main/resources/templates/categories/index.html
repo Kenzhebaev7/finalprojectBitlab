@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th = "http://www.thymeleaf.org"
+      xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/base.html">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+      <div layout:fragment="header-title">
+            <h1>Все доступные курсы</h1>
+      </div>
+
+<div layout:fragment="content">
+    <div class="cours-list" style="background-color: #0E2A47; color: #fff;">
+        <h1>Популярные курсы</h1>
+        <div class="cours-row">
+            <div class="single-category" th:each="category:${cours}">
+                <div class="single-category-image">
+                    <img th:src="${category.loadImage()}" alt="hehe">
+                    <input type="hidden" th:value="${category.id}">
+                </div>
+                <div class="single-category-info">
+                    <div class="single-category-title">
+                        <a th:href="@{'/cours/'+${category.id}}" th:text="${category.getName()}"></a>
+                    </div>
+                    <div class="single-course__">
+                        <span style="color: #fff" th:text="${category.getPosts().size()} + ' уроков'"><i class='bx bxs-videos'></i></span>
+                        <span style="color: #fff"><i class='bx bx-time' ></i> 2h 19m</span>
+                        <span style="color: #fff" th:text="${category.getCreatedAt().getMonth() + ' ' + category.getCreatedAt().getYear()}"><i class='bx bxs-videos'></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</html>

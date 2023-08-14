@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th = "http://www.thymeleaf.org"
+      xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/base}">
+xmlns:sec = "http://www.thymeleaf.org/extras/spring-security">
+
+<div layout:fragment="content">
+
+    <form th:action="@{'/posts/store'}" method="post" enctype="multipart/form-data" class="create-form">
+        <div class="create-form-group">
+            <label for="name">Название поста</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Название урока">
+        </div>
+        <div class="create-form-group">
+            <label>Описание</label>
+            <textarea name="description">
+
+            </textarea>
+        </div>
+        <div class="create-form-group">
+            <select name="category_id" id="">
+                <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.getName()}"></option>
+            </select>
+        </div>
+        <div class="create-form-group">
+            <label>Изображение</label>
+            <input type="file" class="form-control" name="image">
+        </div>
+        <div class="create-form-group">
+            <button class="create-form-btn">Создать пост</button>
+        </div>
+    </form>
+</div>
+</html>
